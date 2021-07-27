@@ -38,7 +38,7 @@ pageClass: routes
 
 ### Home
 
-<RouteEn author="TigerCubDen" example="/furaffinity/home" path="/furaffinity/:type?/:nsfw?" :paramsDesc="['Art Type, default to be `artwork`', 'NSFW Mode, do not filter NSFW contents when value set to `1`']" radar="1">
+<RouteEn author="TigerCubDen" example="/furaffinity/home" path="/furaffinity/home/:type?/:nsfw?" :paramsDesc="['Art Type, default to be `artwork`', 'NSFW Mode, do not filter NSFW contents when value set to `1`']" radar="1">
 
 Type
 
@@ -50,7 +50,7 @@ Type
 
 ### Browse
 
-<RouteEn author="TigerCubDen" example="/furaffinity/browse" path="/furaffinity/:nsfw?" :paramsDesc="['NSFW Mode, do not filter NSFW contents when value set to `1`']" radar="1"/>
+<RouteEn author="TigerCubDen" example="/furaffinity/browse" path="/furaffinity/browse/:nsfw?" :paramsDesc="['NSFW Mode, do not filter NSFW contents when value set to `1`']" radar="1"/>
 
 ### Website Status
 
@@ -62,7 +62,7 @@ Type
 
 ### Search
 
-<RouteEn author="TigerCubDen" example="/furaffinity/search/tiger" path="/furaffinity/:keyword/:nsfw?" :paramsDesc="['Search keyword, enter any words you want to search, require English', 'NSFW Mode，do not filter NSFW contents when value set to `1`']" radar="1"/>
+<RouteEn author="TigerCubDen" example="/furaffinity/search/tiger" path="/furaffinity/search/:keyword/:nsfw?" :paramsDesc="['Search keyword, enter any words you want to search, require English', 'NSFW Mode，do not filter NSFW contents when value set to `1`']" radar="1"/>
 
 ### User's Watching List
 
@@ -209,7 +209,13 @@ These feed do not include boosts (a.k.a. reblogs). RSSHub provides a feed for us
 
 ### Keyword
 
-<RouteEn author="DIYgod" example="/pixiv/search/麻衣/popular/2" path="/pixiv/search/:keyword/:order?/:r18?" :paramsDesc="['keyword', 'rank mode, empty or other for time order, popular for popular order', 'filte R18 content, 0 to no filter, 1 to only not R18, 2 to only R18, default to 0']" radar="1" rssbud="1"/>
+<RouteEn author="DIYgod" example="/pixiv/search/麻衣/popular/2" path="/pixiv/search/:keyword/:order?/:mode?" :paramsDesc="['keyword', 'rank mode, empty or other for time order, popular for popular order', 'filte R18 content']" radar="1" rssbud="1">
+
+| only not R18 | only R18 | no filter |
+| ----------------- | ------------------------- | ------------------------- |
+| safe           | r18              | empty or other            |
+
+</RouteEn>
 
 ### Following timeline
 

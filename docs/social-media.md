@@ -302,6 +302,16 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 <Route author="hoilc" example="/bilibili/manga/update/26009" path="/bilibili/manga/update/:comicid" :paramsDesc="['漫画 id, 可在 URL 中找到, 支持带有`mc`前缀']"/>
 
+### 用户追漫更新
+
+<Route author="yindaheng98" example="/bilibili/manga/followings/26009" path="/manga/followings/:uid/:limits?" :paramsDesc="['用户 id', '抓取最近更新前多少本漫画，默认为10']" selfhost="1">
+::: warning 注意
+
+用户追漫需要 b 站登录后的 Cookie 值，所以只能自建，详情见部署页面的配置模块。
+
+:::
+</Route>
+
 ## Dev.to
 
 ### 最高职位
@@ -330,7 +340,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 ### 主页
 
-<Route author="TigerCubDen" example="/furaffinity/home" path="/furaffinity/:type?/:nsfw?" :paramsDesc="['类型，默认为 `artwork`', 'NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1">
+<Route author="TigerCubDen" example="/furaffinity/home" path="/furaffinity/home/:type?/:nsfw?" :paramsDesc="['类型，默认为 `artwork`', 'NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1">
 
 类型 type
 
@@ -342,7 +352,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 ### 浏览
 
-<Route author="TigerCubDen" example="/furaffinity/browse" path="/furaffinity/:nsfw?" :paramsDesc="['NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1"/>
+<Route author="TigerCubDen" example="/furaffinity/browse" path="/furaffinity/browse/:nsfw?" :paramsDesc="['NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1"/>
 
 ### 站点状态
 
@@ -350,7 +360,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 ### 搜索
 
-<Route author="TigerCubDen" example="/furaffinity/search/tiger" path="/furaffinity/:keyword/:nsfw?" :paramsDesc="['搜索关键词，仅限英文搜索', 'NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1"/>
+<Route author="TigerCubDen" example="/furaffinity/search/tiger" path="/furaffinity/search/:keyword/:nsfw?" :paramsDesc="['搜索关键词，仅限英文搜索', 'NSFW开关, 当值为 `1` 时不过滤NSFW内容']" radar="1"/>
 
 ### 用户主页简介
 
@@ -374,7 +384,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 ### 用户的日记
 
-<Route author="TigerCubDen" example="/furaffinity/journals/rukis" path="/furaffinity/shouts/:username" :paramsDesc="['用户名, 可在用户主页的链接处找到']" radar="1"/>
+<Route author="TigerCubDen" example="/furaffinity/journals/rukis" path="/furaffinity/journals/:username" :paramsDesc="['用户名, 可在用户主页的链接处找到']" radar="1"/>
 
 ### 用户的创作画廊
 
@@ -519,8 +529,13 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 
 ### 关键词
 
-<Route author="DIYgod" example="/pixiv/search/麻衣/popular/2" path="/pixiv/search/:keyword/:order?/:r18?" :paramsDesc="['关键词', '排序方式，popular 按热门度排序，空或其他任意值按时间排序', '过滤 R18 内容，0 为不过滤，1 为只看非 R18 内容，2 为只看 R18 内容，默认为 0']" radar="1" rssbud="1"/>
+<Route author="DIYgod" example="/pixiv/search/麻衣/popular/2" path="/pixiv/search/:keyword/:order?/:mode?" :paramsDesc="['关键词', '排序方式，popular 按热门度排序，空或其他任意值按时间排序', '过滤方式']" radar="1" rssbud="1">
 
+| 只看非 R18 内容 | 只看 R18 内容 | 不过滤         |
+| --------------- | ------------- | -------------- |
+| safe            | r18           | 空或其他任意值 |
+
+</Route>
 ### 关注的新作品
 
 <Route author="ClarkeCheng" example="/pixiv/user/illustfollows" path="/pixiv/user/illustfollows" radar="1" rssbud="1" selfhost="1"/>
@@ -598,7 +613,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 | showQuotedAuthorAvatarInDesc | 是否在正文处显示被转推的推文的作者头像（若阅读器会提取正文图片，不建议开启） | 0/1/true/false | false                                    |
 | showAuthorAvatarInDesc       | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启）               | 0/1/true/false | false                                    |
 | showEmojiForRetweetAndReply  | 显示 “🔁” 取代 “Rt”、“↩️” 取代 “Re”                                          | 0/1/true/false | false                                    |
-| showRetweetTextInTitle       | 在标题出显示转推评论（置为 false 则在标题只显示被转推推文）                  | 0/1/true/false | true                                     |
+| showRetweetTextInTitle       | 在标题处显示转推评论（置为 false 则在标题只显示被转推推文）                  | 0/1/true/false | true                                     |
 | addLinkForPics               | 为图片添加可点击的链接                                                       | 0/1/true/false | false                                    |
 | showTimestampInDescription   | 在正文处显示推特的时间戳                                                     | 0/1/true/false | false                                    |
 | showQuotedInTitle            | 在标题处显示被引用的推文                                                     | 0/1/true/false | false                                    |
@@ -770,7 +785,7 @@ YouTube 官方亦有提供频道 RSS，形如 <https://www.youtube.com/feeds/vid
 
 ### 豆瓣小组
 
-<Route author="DIYgod" example="/douban/group/camera" path="/douban/group/:groupid" :paramsDesc="['豆瓣小组的 id']"/>
+<Route author="DIYgod" example="/douban/group/648102" path="/douban/group/:groupid/:type?" :paramsDesc="['豆瓣小组的 id', '缺省 最新，essence 最热，elite 精华']"/>
 
 ### 浏览发现
 
